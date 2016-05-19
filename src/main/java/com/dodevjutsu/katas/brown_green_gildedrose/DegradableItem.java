@@ -10,22 +10,16 @@ public class DegradableItem {
     }
 
     public static DegradableItem create(Item item) {
-        if(item.name.equals("Aged Brie")) {
+        if (item.name.equals("Aged Brie")) {
             return new AgedBrie(item);
-        } else if(!item.name.equals("Sulfuras")) {
-            return new RegularItem(item);
+        } else if (item.name.equals("Sulfuras")) {
+            return new Sulfuras(item);
         }
-        return new DegradableItem(item);
+        return new RegularItem(item);
     }
 
     public void updateQuality() {
-        if(item.name.equals("Sulfuras")){
-
-        } else if(item.name.equals("Aged Brie")) {
-            throw new RuntimeException("code execution should not get here");
-        } else {
-            throw new RuntimeException("code execution should not get here");
-        }
+        throw new RuntimeException("code execution should not get here");
     }
 
     protected boolean sellDateHasPassed() {
@@ -41,9 +35,6 @@ public class DegradableItem {
     }
 
     public void age() {
-        if(item.name.equals("Sulfuras")){
-            return;
-        }
         item.sellIn -= 1;
     }
 }
