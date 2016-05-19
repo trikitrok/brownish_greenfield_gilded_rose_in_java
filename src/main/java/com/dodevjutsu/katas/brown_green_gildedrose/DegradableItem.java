@@ -10,6 +10,9 @@ public class DegradableItem {
     }
 
     public static DegradableItem create(Item item) {
+        if(item.name.equals("Aged Brie")) {
+            return new AgedBrie(item);
+        }
         return new DegradableItem(item);
     }
 
@@ -17,7 +20,7 @@ public class DegradableItem {
         if(item.name.equals("Sulfuras")){
 
         } else if(item.name.equals("Aged Brie")) {
-            increaseQualityBy(1);
+            throw new RuntimeException("code execution should not get here");
         } else {
             if(item.sellIn < 0) {
                 decreaseQualityBy(2);
@@ -27,7 +30,7 @@ public class DegradableItem {
         }
     }
 
-    private void increaseQualityBy(int amount) {
+    protected void increaseQualityBy(int amount) {
         item.quality = Math.min(item.quality + amount, MAXIMUM_QUALITY);
     }
 
