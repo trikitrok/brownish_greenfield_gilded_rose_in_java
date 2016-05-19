@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 public class GildedRoseTest {
     @Test
     public void a_regular_item_quality_decreases_by_one() {
-        int initialQuality = 5;
+        int initialQuality =  5;
         Item item = new Item("any regular item", 6, initialQuality);
         GildedRose gildedRose = new GildedRose(item);
 
@@ -43,13 +43,13 @@ public class GildedRoseTest {
 
     @Test
     public void the_quality_of_an_item_is_never_negative() {
-        int initialQuality = 0;
-        Item item = new Item("a regular item", 1, initialQuality);
+        int minimumQuality = 0;
+        Item item = new Item("a regular item", 1, minimumQuality);
         GildedRose gildedRose = new GildedRose(item);
 
         gildedRose.updateInventory();
 
-        assertThat(item.quality, is(initialQuality));
+        assertThat(item.quality, is(minimumQuality));
     }
 
     @Test
