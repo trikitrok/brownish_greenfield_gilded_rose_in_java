@@ -3,14 +3,13 @@ package com.dodevjutsu.katas.brown_green_gildedrose;
 public class DegradableItemFactory {
     public static DegradableItem create(Item item) {
         if(isConjured(item)) {
-            return new Conjured(
-              createDegradableItem(
-                  notConjuredName(item), item
-              )
-            );
+            return conjured(degradableItem(item));
         }
+        return degradableItem(item);
+    }
 
-        return createDegradableItem(item.name, item);
+    private static Conjured conjured(DegradableItem item) {
+        return new Conjured(item);
     }
 
     private static String notConjuredName(Item item) {
@@ -21,7 +20,8 @@ public class DegradableItemFactory {
         return item.name.contains("conjured") || item.name.contains("Conjured");
     }
 
-    private static DegradableItem createDegradableItem(String name, Item item) {
+    private static DegradableItem degradableItem(Item item) {
+        String name = notConjuredName(item);
         if (isAgedBrie(name)) {
             return new AgedBrie(item);
         } else if (isSulfuras(name)) {
