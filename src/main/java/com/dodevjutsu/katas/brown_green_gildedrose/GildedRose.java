@@ -36,9 +36,6 @@ public class GildedRose {
     }
 
     private void decreaseQualityBy(int amount) {
-        item.quality -= amount;
-        if(item.quality < MINIMUM_QUALITY) {
-            item.quality = MINIMUM_QUALITY;
-        }
+        item.quality = Math.max(item.quality - amount, MINIMUM_QUALITY);
     }
 }
