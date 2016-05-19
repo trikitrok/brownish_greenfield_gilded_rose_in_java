@@ -10,6 +10,9 @@ public class GildedRose {
     }
 
     public void updateInventory() {
+        if(item.name.equals("Sulfuras")){
+            return;
+        }
         ageItem();
         updateItemQuality();
     }

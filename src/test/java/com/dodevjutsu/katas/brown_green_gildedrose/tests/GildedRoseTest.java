@@ -5,6 +5,7 @@ import com.dodevjutsu.katas.brown_green_gildedrose.Item;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.is;
 
 public class GildedRoseTest {
@@ -72,5 +73,18 @@ public class GildedRoseTest {
         gildedRose.updateInventory();
 
         assertThat(item.quality, is(maximumQuality));
+    }
+
+    @Test
+    public void sulfuras_is_immutable() {
+        int initialQuality = 80;
+        int daysToBeSold = 0;
+        Item item = new Item("Sulfuras", daysToBeSold, initialQuality);
+        GildedRose gildedRose = new GildedRose(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(initialQuality));
+        assertThat(item.sellIn, is(daysToBeSold));
     }
 }
