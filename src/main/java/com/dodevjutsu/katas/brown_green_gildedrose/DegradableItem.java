@@ -14,6 +14,8 @@ abstract public class DegradableItem {
             return new AgedBrie(item);
         } else if (item.name.equals("Sulfuras")) {
             return new Sulfuras(item);
+        } else if(item.name.equals("Backstage passes")) {
+            return new BackstagePasses(item);
         }
         return new RegularItem(item);
     }
