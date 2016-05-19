@@ -2,6 +2,7 @@ package com.dodevjutsu.katas.brown_green_gildedrose;
 
 public class GildedRose {
     private static final int MINIMUM_QUALITY = 0;
+    private static final int MAXIMUM_QUALITY = 50;
     private final Item item;
 
     public GildedRose(Item item) {
@@ -15,10 +16,7 @@ public class GildedRose {
 
     private void updateItemQuality() {
         if(item.name.equals("Aged Brie")) {
-            item.quality += 1;
-            if(item.quality > 50) {
-                item.quality = 50;
-            }
+            increaseQualityBy(1);
             return;
         }
 
@@ -27,6 +25,13 @@ public class GildedRose {
             return;
         }
         decreaseQualityBy(1);
+    }
+
+    private void increaseQualityBy(int amount) {
+        item.quality += amount;
+        if(item.quality > MAXIMUM_QUALITY) {
+            item.quality = MAXIMUM_QUALITY;
+        }
     }
 
     private void ageItem() {
