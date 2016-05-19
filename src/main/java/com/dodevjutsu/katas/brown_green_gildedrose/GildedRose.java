@@ -28,10 +28,7 @@ public class GildedRose {
     }
 
     private void increaseQualityBy(int amount) {
-        item.quality += amount;
-        if(item.quality > MAXIMUM_QUALITY) {
-            item.quality = MAXIMUM_QUALITY;
-        }
+        item.quality = Math.min(item.quality + amount, MAXIMUM_QUALITY);
     }
 
     private void ageItem() {
