@@ -16,10 +16,15 @@ public class GildedRose {
             return;
         }
         ageItem();
+        
         updateItemQuality();
     }
 
     private void updateItemQuality() {
+        if(item.name.equals("Sulfuras")){
+            return;
+        }
+
         if(item.name.equals("Aged Brie")) {
             increaseQualityBy(1);
             return;
