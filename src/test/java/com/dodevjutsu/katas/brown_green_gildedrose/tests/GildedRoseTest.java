@@ -62,4 +62,15 @@ public class GildedRoseTest {
 
         assertThat(item.quality, is(initialQuality + 1));
     }
+
+    @Test
+    public void the_quality_of_an_item_is_never_more_than_50() {
+        int maximumQuality = 50;
+        Item item = new Item("Aged Brie", 8, maximumQuality);
+        GildedRose gildedRose = new GildedRose(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(maximumQuality));
+    }
 }
