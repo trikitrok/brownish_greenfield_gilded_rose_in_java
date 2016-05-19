@@ -2,7 +2,7 @@ package com.dodevjutsu.katas.brown_green_gildedrose;
 
 public class DegradableItemFactory {
     public static DegradableItem create(Item item) {
-        if(item.name.indexOf("conjured") != -1) {
+        if(isConjured(item)) {
             return new Conjured(
               createDegradableItem(
                   "any regular item", item
@@ -11,6 +11,10 @@ public class DegradableItemFactory {
         }
 
         return createDegradableItem(item.name, item);
+    }
+
+    private static boolean isConjured(Item item) {
+        return item.name.indexOf("conjured") != -1;
     }
 
     private static DegradableItem createDegradableItem(String name, Item item) {
