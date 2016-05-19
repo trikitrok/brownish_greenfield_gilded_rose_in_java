@@ -18,4 +18,15 @@ public class GildedRoseTest {
 
         assertThat(item.quality, is(initialQuality - 1));
     }
+
+    @Test
+    public void a_regular_item_days_to_be_sold_decreases_by_one_when_inventory_is_updated() {
+        int initialDaysToBeSold = 10;
+        Item item = new Item("a regular item", initialDaysToBeSold, 7);
+        GildedRose gildedRose = new GildedRose(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.sellIn, is(initialDaysToBeSold - 1));
+    }
 }

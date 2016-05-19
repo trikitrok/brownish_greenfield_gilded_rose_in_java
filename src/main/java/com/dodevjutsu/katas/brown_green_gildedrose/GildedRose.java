@@ -9,5 +9,6 @@ public class GildedRose {
 
     public void updateInventory() {
         item.quality -= 1;
+        item.sellIn -= 1;
     }
 }
