@@ -14,11 +14,11 @@ public class DegradableItemFactory {
     }
 
     private static String notConjuredName(Item item) {
-        return item.name.replace("conjured", "").replaceAll("\\s+", " ").trim();
+        return item.name.replace("Conjured", "").replace("conjured", "").replaceAll("\\s+", " ").trim();
     }
 
     private static boolean isConjured(Item item) {
-        return item.name.indexOf("conjured") != -1;
+        return item.name.contains("conjured") || item.name.contains("Conjured");
     }
 
     private static DegradableItem createDegradableItem(String name, Item item) {

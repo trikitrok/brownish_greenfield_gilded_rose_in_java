@@ -164,4 +164,26 @@ public class GildedRoseTest {
 
         assertThat(item.quality, is(initialQuality - 2));
     }
+
+    @Test
+    public void the_quality_of_a_conjured_item_is_never_negative() {
+        int minimumQuality = 0;
+        Item item = new Item("a conjured regular item", 1, minimumQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(minimumQuality));
+    }
+
+    @Test
+    public void conjured_aged_brie_increases_twice_its_quality_the_older_it_gets() {
+        int initialQuality = 10;
+        Item item = new Item("Conjured Aged Brie", 5, initialQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(initialQuality + 2));
+    }
 }
