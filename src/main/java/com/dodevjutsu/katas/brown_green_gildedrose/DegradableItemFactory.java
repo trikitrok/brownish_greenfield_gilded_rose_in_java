@@ -10,14 +10,7 @@ public class DegradableItemFactory {
             );
         }
 
-        if (isAgedBrie(item.name)) {
-            return new AgedBrie(item);
-        } else if (isSulfuras(item.name)) {
-            return new Sulfuras(item);
-        } else if(areBackstagePasses(item.name)) {
-            return new BackstagePasses(item);
-        }
-        return new RegularItem(item);
+        return createDegradableItem(item.name, item);
     }
 
     private static DegradableItem createDegradableItem(String name, Item item) {
