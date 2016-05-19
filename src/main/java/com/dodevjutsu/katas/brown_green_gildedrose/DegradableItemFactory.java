@@ -5,12 +5,16 @@ public class DegradableItemFactory {
         if(isConjured(item)) {
             return new Conjured(
               createDegradableItem(
-                  "any regular item", item
+                  notConjuredName(item), item
               )
             );
         }
 
         return createDegradableItem(item.name, item);
+    }
+
+    private static String notConjuredName(Item item) {
+        return item.name.replace("conjured", "").replaceAll("\\s+", " ").trim();
     }
 
     private static boolean isConjured(Item item) {
