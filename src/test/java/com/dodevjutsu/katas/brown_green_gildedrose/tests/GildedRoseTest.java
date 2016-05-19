@@ -166,6 +166,17 @@ public class GildedRoseTest {
     }
 
     @Test
+    public void a_conjured_regular_item_once_the_sell_date_has_passed_the_quality_decreases_by_4() {
+        int initialQuality = 6;
+        Item item = new Item("a conjured regular item", 0, initialQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(initialQuality - 4));
+    }
+
+    @Test
     public void the_quality_of_a_conjured_item_is_never_negative() {
         int minimumQuality = 0;
         Item item = new Item("a conjured regular item", 1, minimumQuality);
@@ -185,5 +196,59 @@ public class GildedRoseTest {
         gildedRose.updateInventory();
 
         assertThat(item.quality, is(initialQuality + 2));
+    }
+
+    @Test
+    public void the_quality_of_a_conjured_item_is_never_more_than_50() {
+        int maximumQuality = 50;
+        Item item = new Item("conjured Aged Brie", 8, maximumQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(maximumQuality));
+    }
+    
+    @Test
+    public void conjured_backstage_passes_quality_increases_by_2_each_day_when_concert_is_more_than_10_days_away() {
+        int initialQuality = 8;
+        Item backstagePasses = new Item("Backstage conjured passes", 20, initialQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(backstagePasses);
+
+        gildedRose.updateInventory();
+
+        assertThat(backstagePasses.quality, is(initialQuality + 2));
+    }
+
+    @Test
+    public void conjured_backstage_passes_quality_increases_by_4_each_day_when_concert_is_10_or_less_than_10_days_away() {
+        int initialQuality = 8;
+        Item backstagePasses = new Item("Backstage conjured passes", 10, initialQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(backstagePasses);
+
+        gildedRose.updateInventory();
+
+        assertThat(backstagePasses.quality, is(initialQuality + 4));
+    }
+
+    @Test
+    public void conjured_backstage_passes_quality_increases_by_6_each_day_when_concert_is_5_or_less_than_10_days_away() {
+        int initialQuality = 8;
+        Item backstagePasses = new Item("Backstage conjured passes", 5, initialQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(backstagePasses);
+
+        gildedRose.updateInventory();
+
+        assertThat(backstagePasses.quality, is(initialQuality + 6));
+    }
+
+    @Test
+    public void conjured_backstage_passes_quality_also_drops_to_zero_after_the_concert() {
+        Item backstagePasses = new Item("Backstage conjured passes", 0, 20);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(backstagePasses);
+
+        gildedRose.updateInventory();
+
+        assertThat(backstagePasses.quality, is(0));
     }
 }
