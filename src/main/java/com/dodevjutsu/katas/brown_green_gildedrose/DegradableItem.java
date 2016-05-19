@@ -9,17 +9,6 @@ abstract public class DegradableItem {
         this.item = item;
     }
 
-    public static DegradableItem create(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            return new AgedBrie(item);
-        } else if (item.name.equals("Sulfuras")) {
-            return new Sulfuras(item);
-        } else if(item.name.equals("Backstage passes")) {
-            return new BackstagePasses(item);
-        }
-        return new RegularItem(item);
-    }
-
     abstract public void updateQuality();
 
     public void age() {

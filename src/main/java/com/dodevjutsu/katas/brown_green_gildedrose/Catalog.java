@@ -21,7 +21,7 @@ public class Catalog {
     public static Catalog withItems(Item[] items) {
         List<DegradableItem> degradableItems = new ArrayList<>();
         for (Item item : items) {
-            degradableItems.add(DegradableItem.create(item));
+            degradableItems.add(DegradableItemFactory.create(item));
         }
         return new Catalog(degradableItems);
     }
