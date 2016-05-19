@@ -1,12 +1,13 @@
 package com.dodevjutsu.katas.brown_green_gildedrose;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Catalog {
 
     private final List<DegradableItem> items;
 
-    public Catalog(List<DegradableItem> items) {
+    private Catalog(List<DegradableItem> items) {
         this.items = items;
     }
 
@@ -15,5 +16,13 @@ public class Catalog {
             item.age();
             item.updateQuality();
         }
+    }
+
+    public static Catalog withItems(Item[] items) {
+        List<DegradableItem> degradableItems = new ArrayList<>();
+        for (Item item : items) {
+            degradableItems.add(DegradableItem.create(item));
+        }
+        return new Catalog(degradableItems);
     }
 }

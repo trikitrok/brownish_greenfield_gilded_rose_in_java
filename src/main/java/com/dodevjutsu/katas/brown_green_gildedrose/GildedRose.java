@@ -1,8 +1,5 @@
 package com.dodevjutsu.katas.brown_green_gildedrose;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GildedRose {
     private final Catalog catalog;
 
@@ -15,10 +12,6 @@ public class GildedRose {
     }
 
     public static GildedRose witCatalogHaving(Item... items) {
-        List<DegradableItem> degradableItems = new ArrayList<>();
-        for (Item item : items) {
-            degradableItems.add(DegradableItem.create(item));
-        }
-        return new GildedRose(new Catalog(degradableItems));
+        return new GildedRose(Catalog.withItems(items));
     }
 }
