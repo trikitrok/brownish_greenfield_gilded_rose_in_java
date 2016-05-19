@@ -17,7 +17,7 @@ public class GildedRose {
     public static GildedRose witCatalogHaving(Item... items) {
         List<DegradableItem> degradableItems = new ArrayList<>();
         for (Item item : items) {
-            degradableItems.add(new DegradableItem(item));
+            degradableItems.add(DegradableItem.create(item));
         }
         return new GildedRose(new Catalog(degradableItems));
     }

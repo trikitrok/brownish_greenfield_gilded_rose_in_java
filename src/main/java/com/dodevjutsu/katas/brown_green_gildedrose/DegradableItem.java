@@ -5,13 +5,17 @@ public class DegradableItem {
     private static final int MAXIMUM_QUALITY = 50;
     private final Item item;
 
-    public DegradableItem(Item item) {
+    protected DegradableItem(Item item) {
         this.item = item;
+    }
+
+    public static DegradableItem create(Item item) {
+        return new DegradableItem(item);
     }
 
     public void updateQuality() {
         if(item.name.equals("Sulfuras")){
-         
+
         } else if(item.name.equals("Aged Brie")) {
             increaseQualityBy(1);
         } else {
