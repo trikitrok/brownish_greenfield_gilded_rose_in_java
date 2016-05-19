@@ -4,9 +4,11 @@ public class GildedRose {
     private static final int MINIMUM_QUALITY = 0;
     private static final int MAXIMUM_QUALITY = 50;
     private final Item item;
+    private final DegradableItem degradableItem;
 
     public GildedRose(Item item) {
         this.item = item;
+        this.degradableItem = new DegradableItem(item);
     }
 
     public void updateInventory() {
