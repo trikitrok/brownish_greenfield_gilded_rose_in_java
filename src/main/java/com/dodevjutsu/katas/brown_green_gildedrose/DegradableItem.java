@@ -1,6 +1,6 @@
 package com.dodevjutsu.katas.brown_green_gildedrose;
 
-public class DegradableItem {
+abstract public class DegradableItem {
     private static final int MINIMUM_QUALITY = 0;
     private static final int MAXIMUM_QUALITY = 50;
     private final Item item;
@@ -18,8 +18,10 @@ public class DegradableItem {
         return new RegularItem(item);
     }
 
-    public void updateQuality() {
-        throw new RuntimeException("code execution should not get here");
+    abstract public void updateQuality();
+
+    public void age() {
+        item.sellIn -= 1;
     }
 
     protected boolean sellDateHasPassed() {
@@ -32,9 +34,5 @@ public class DegradableItem {
 
     protected void decreaseQualityBy(int amount) {
         item.quality = Math.max(item.quality - amount, MINIMUM_QUALITY);
-    }
-
-    public void age() {
-        item.sellIn -= 1;
     }
 }
