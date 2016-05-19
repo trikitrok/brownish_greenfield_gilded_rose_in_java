@@ -16,11 +16,7 @@ public class Catalog {
     }
 
     public void update() {
-        items.forEach(this::update);
-    }
-
-    private void update(DegradableItem item) {
-        item.degrade();
+        items.forEach(item -> item.degrade());
     }
 
     public static Catalog withItems(Item[] items) {
