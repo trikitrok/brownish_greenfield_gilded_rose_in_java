@@ -12,6 +12,8 @@ public class DegradableItem {
     public static DegradableItem create(Item item) {
         if(item.name.equals("Aged Brie")) {
             return new AgedBrie(item);
+        } else if(!item.name.equals("Sulfuras")) {
+            return new RegularItem(item);
         }
         return new DegradableItem(item);
     }
@@ -22,19 +24,19 @@ public class DegradableItem {
         } else if(item.name.equals("Aged Brie")) {
             throw new RuntimeException("code execution should not get here");
         } else {
-            if(item.sellIn < 0) {
-                decreaseQualityBy(2);
-                return;
-            }
-            decreaseQualityBy(1);
+            throw new RuntimeException("code execution should not get here");
         }
+    }
+
+    protected boolean sellDateHasPassed() {
+        return item.sellIn < 0;
     }
 
     protected void increaseQualityBy(int amount) {
         item.quality = Math.min(item.quality + amount, MAXIMUM_QUALITY);
     }
 
-    private void decreaseQualityBy(int amount) {
+    protected void decreaseQualityBy(int amount) {
         item.quality = Math.max(item.quality - amount, MINIMUM_QUALITY);
     }
 
