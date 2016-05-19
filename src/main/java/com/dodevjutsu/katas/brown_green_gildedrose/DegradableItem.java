@@ -11,19 +11,16 @@ public class DegradableItem {
 
     public void updateQuality() {
         if(item.name.equals("Sulfuras")){
-            return;
-        }
-
-        if(item.name.equals("Aged Brie")) {
+         
+        } else if(item.name.equals("Aged Brie")) {
             increaseQualityBy(1);
-            return;
+        } else {
+            if(item.sellIn < 0) {
+                decreaseQualityBy(2);
+                return;
+            }
+            decreaseQualityBy(1);
         }
-
-        if(item.sellIn < 0) {
-            decreaseQualityBy(2);
-            return;
-        }
-        decreaseQualityBy(1);
     }
 
     private void increaseQualityBy(int amount) {
