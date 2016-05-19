@@ -1,7 +1,8 @@
 package com.dodevjutsu.katas.brown_green_gildedrose;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Catalog {
 
@@ -12,17 +13,21 @@ public class Catalog {
     }
 
     public void update() {
-        for (DegradableItem item : items) {
-            item.age();
-            item.updateQuality();
-        }
+        items.forEach(this::update);
+    }
+
+    private void update(DegradableItem item) {
+        item.age();
+        item.updateQuality();
     }
 
     public static Catalog withItems(Item[] items) {
-        List<DegradableItem> degradableItems = new ArrayList<>();
-        for (Item item : items) {
-            degradableItems.add(DegradableItemFactory.create(item));
-        }
-        return new Catalog(degradableItems);
+        return new Catalog(createDegradableItemsFrom(items));
+    }
+
+    private static List<DegradableItem> createDegradableItemsFrom(Item[] items) {
+        return Arrays.asList(items).stream()
+            .map(item -> DegradableItemFactory.create(item))
+            .collect(Collectors.toList());
     }
 }
