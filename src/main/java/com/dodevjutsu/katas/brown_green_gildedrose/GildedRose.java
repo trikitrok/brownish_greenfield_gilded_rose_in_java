@@ -8,7 +8,11 @@ public class GildedRose {
     }
 
     public void updateInventory() {
-        item.quality -= 1;
         item.sellIn -= 1;
+
+        item.quality -= 1;
+        if(item.sellIn < 0) {
+            item.quality -= 1;
+        }
     }
 }

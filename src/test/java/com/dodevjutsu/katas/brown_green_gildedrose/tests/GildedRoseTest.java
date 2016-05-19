@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.is;
 
 public class GildedRoseTest {
     @Test
-    public void a_regular_item_quality_decreases_by_one_when_inventory_is_updated() {
+    public void a_regular_item_quality_decreases_by_one() {
         int initialQuality = 5;
         Item item = new Item("any regular item", 6, initialQuality);
         GildedRose gildedRose = new GildedRose(item);
@@ -20,7 +20,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void a_regular_item_days_to_be_sold_decreases_by_one_when_inventory_is_updated() {
+    public void a_regular_item_days_to_be_sold_decreases_by_one() {
         int initialDaysToBeSold = 10;
         Item item = new Item("a regular item", initialDaysToBeSold, 7);
         GildedRose gildedRose = new GildedRose(item);
@@ -28,5 +28,16 @@ public class GildedRoseTest {
         gildedRose.updateInventory();
 
         assertThat(item.sellIn, is(initialDaysToBeSold - 1));
+    }
+
+    @Test
+    public void once_the_sell_date_has_passed_the_quality_decreases_by_two() {
+        int initialQuality = 6;
+        Item item = new Item("a regular item", 0, initialQuality);
+        GildedRose gildedRose = new GildedRose(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(initialQuality - 2));
     }
 }
