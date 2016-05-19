@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GildedRose {
-    private final DegradableItem item;
-    private final List<DegradableItem> items = new ArrayList<>();
+    private List<DegradableItem> items = new ArrayList<>();
 
-    public GildedRose(Item item) {
-        this.item = new DegradableItem(item);
-        this.items.add(this.item);
+    private GildedRose(List<DegradableItem> degradableItems) {
+        this.items = degradableItems;
     }
 
     public void updateInventory() {
@@ -19,4 +17,11 @@ public class GildedRose {
         }
     }
 
+    public static GildedRose witCatalogHaving(Item ... items) {
+        List<DegradableItem> degradableItems = new ArrayList<>();
+        for(Item item : items) {
+            degradableItems.add(new DegradableItem(item));
+        }
+        return new GildedRose(degradableItems);
+    }
 }
