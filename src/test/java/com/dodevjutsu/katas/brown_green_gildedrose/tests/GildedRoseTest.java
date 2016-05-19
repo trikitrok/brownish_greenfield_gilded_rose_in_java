@@ -110,4 +110,15 @@ public class GildedRoseTest {
 
         assertThat(backstagePasses.quality, is(initialQuality + 1));
     }
+
+    @Test
+    public void backstage_passes_quality_increases_by_2_each_day_when_concert_is_10_or_less_than_10_days_away() {
+        int initialQuality = 8;
+        Item backstagePasses = new Item("Backstage passes", 10, initialQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(backstagePasses);
+
+        gildedRose.updateInventory();
+
+        assertThat(backstagePasses.quality, is(initialQuality + 2));
+    }
 }

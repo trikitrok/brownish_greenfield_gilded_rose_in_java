@@ -37,4 +37,8 @@ abstract public class DegradableItem {
     protected void decreaseQualityBy(int amount) {
         item.quality = Math.max(item.quality - amount, MINIMUM_QUALITY);
     }
+
+    protected int daysToBeSold() {
+        return item.sellIn;
+    }
 }
