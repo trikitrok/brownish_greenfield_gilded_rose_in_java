@@ -33,4 +33,11 @@ public class DegradableItem {
     private void decreaseQualityBy(int amount) {
         item.quality = Math.max(item.quality - amount, MINIMUM_QUALITY);
     }
+
+    public void age() {
+        if(item.name.equals("Sulfuras")){
+            return;
+        }
+        item.sellIn -= 1;
+    }
 }
