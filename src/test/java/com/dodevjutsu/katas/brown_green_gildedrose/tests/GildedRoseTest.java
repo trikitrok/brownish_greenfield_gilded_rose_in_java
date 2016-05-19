@@ -132,4 +132,14 @@ public class GildedRoseTest {
 
         assertThat(backstagePasses.quality, is(initialQuality + 3));
     }
+
+    @Test
+    public void backstage_passes_quality_drops_to_zero_after_the_concert() {
+        Item backstagePasses = new Item("Backstage passes", 0, 20);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(backstagePasses);
+
+        gildedRose.updateInventory();
+
+        assertThat(backstagePasses.quality, is(0));
+    }
 }

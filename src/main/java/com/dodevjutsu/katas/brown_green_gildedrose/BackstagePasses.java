@@ -7,7 +7,9 @@ public class BackstagePasses extends DegradableItem {
 
     @Override
     public void updateQuality() {
-        if (daysToBeSold() <= 5) {
+        if (sellDateHasPassed()) {
+            qualityDropsToZero();
+        } else if (daysToBeSold() <= 5) {
             increaseQualityBy(3);
         } else if (daysToBeSold() <= 10) {
             increaseQualityBy(2);

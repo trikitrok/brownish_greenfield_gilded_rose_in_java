@@ -41,4 +41,8 @@ abstract public class DegradableItem {
     protected int daysToBeSold() {
         return item.sellIn;
     }
+
+    protected void qualityDropsToZero() {
+        item.quality = 0;
+    }
 }
