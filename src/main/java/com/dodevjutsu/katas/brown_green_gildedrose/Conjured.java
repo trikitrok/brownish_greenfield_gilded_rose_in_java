@@ -13,4 +13,9 @@ public class Conjured extends DegradableItem {
         degradableItem.updateQuality();
         degradableItem.updateQuality();
     }
+
+    @Override
+    public void age() {
+        degradableItem.age();
+    }
 }

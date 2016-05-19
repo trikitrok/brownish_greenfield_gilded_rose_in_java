@@ -208,7 +208,7 @@ public class GildedRoseTest {
 
         assertThat(item.quality, is(maximumQuality));
     }
-    
+
     @Test
     public void conjured_backstage_passes_quality_increases_by_2_each_day_when_concert_is_more_than_10_days_away() {
         int initialQuality = 8;
@@ -250,5 +250,18 @@ public class GildedRoseTest {
         gildedRose.updateInventory();
 
         assertThat(backstagePasses.quality, is(0));
+    }
+
+    @Test
+    public void conjured_sulfuras_is_also_immutable() {
+        int initialQuality = 80;
+        int daysToBeSold = 0;
+        Item item = new Item("Conjured Sulfuras", daysToBeSold, initialQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(initialQuality));
+        assertThat(item.sellIn, is(daysToBeSold));
     }
 }
