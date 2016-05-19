@@ -1,12 +1,14 @@
-package com.dodevjutsu.katas.brown_green_gildedrose;
+package com.dodevjutsu.katas.brown_green_gildedrose.degradable_items;
 
-public class BackstagePasses extends DegradableItem {
-    public BackstagePasses(Item item) {
+import com.dodevjutsu.katas.brown_green_gildedrose.Item;
+
+class BackstagePasses extends DegradableItem {
+    BackstagePasses(Item item) {
         super(item);
     }
 
     @Override
-    public void updateQuality() {
+    protected void updateQuality() {
         if (sellDateHasPassed()) {
             qualityDropsToZero();
         } else if (daysToBeSold() <= 5) {

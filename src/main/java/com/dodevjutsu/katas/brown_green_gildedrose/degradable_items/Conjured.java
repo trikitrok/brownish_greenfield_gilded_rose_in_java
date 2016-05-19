@@ -1,21 +1,21 @@
-package com.dodevjutsu.katas.brown_green_gildedrose;
+package com.dodevjutsu.katas.brown_green_gildedrose.degradable_items;
 
-public class Conjured extends DegradableItem {
+class Conjured extends DegradableItem {
     private final DegradableItem degradableItem;
 
-    public Conjured(DegradableItem degradableItem) {
+    Conjured(DegradableItem degradableItem) {
         super(degradableItem.item());
         this.degradableItem = degradableItem;
     }
 
     @Override
-    public void updateQuality() {
+    protected void updateQuality() {
         degradableItem.updateQuality();
         degradableItem.updateQuality();
     }
 
     @Override
-    public void age() {
+    protected void age() {
         degradableItem.age();
     }
 }

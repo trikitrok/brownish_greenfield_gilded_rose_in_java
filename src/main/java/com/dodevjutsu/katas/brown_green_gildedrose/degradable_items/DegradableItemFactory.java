@@ -1,4 +1,6 @@
-package com.dodevjutsu.katas.brown_green_gildedrose;
+package com.dodevjutsu.katas.brown_green_gildedrose.degradable_items;
+
+import com.dodevjutsu.katas.brown_green_gildedrose.Item;
 
 public class DegradableItemFactory {
     public static DegradableItem create(Item item) {

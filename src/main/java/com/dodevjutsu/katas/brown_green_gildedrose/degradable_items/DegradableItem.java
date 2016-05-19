@@ -1,4 +1,6 @@
-package com.dodevjutsu.katas.brown_green_gildedrose;
+package com.dodevjutsu.katas.brown_green_gildedrose.degradable_items;
+
+import com.dodevjutsu.katas.brown_green_gildedrose.Item;
 
 abstract public class DegradableItem {
     private static final int MINIMUM_QUALITY = 0;
@@ -9,9 +11,14 @@ abstract public class DegradableItem {
         this.item = item;
     }
 
-    abstract public void updateQuality();
+    public void degrade() {
+        age();
+        updateQuality();
+    }
 
-    public void age() {
+    abstract protected void updateQuality();
+
+    protected void age() {
         item.sellIn -= 1;
     }
 

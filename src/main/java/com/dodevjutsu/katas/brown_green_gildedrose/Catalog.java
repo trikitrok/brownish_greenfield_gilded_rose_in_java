@@ -1,5 +1,8 @@
 package com.dodevjutsu.katas.brown_green_gildedrose;
 
+import com.dodevjutsu.katas.brown_green_gildedrose.degradable_items.DegradableItem;
+import com.dodevjutsu.katas.brown_green_gildedrose.degradable_items.DegradableItemFactory;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,8 +20,7 @@ public class Catalog {
     }
 
     private void update(DegradableItem item) {
-        item.age();
-        item.updateQuality();
+        item.degrade();
     }
 
     public static Catalog withItems(Item[] items) {
