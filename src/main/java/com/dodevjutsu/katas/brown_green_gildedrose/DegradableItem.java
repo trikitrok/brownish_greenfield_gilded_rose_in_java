@@ -34,4 +34,8 @@ abstract public class DegradableItem {
     protected void qualityDropsToZero() {
         item.quality = 0;
     }
+
+    protected Item item() {
+        return item;
+    }
 }

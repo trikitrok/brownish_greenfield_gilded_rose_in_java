@@ -2,25 +2,44 @@ package com.dodevjutsu.katas.brown_green_gildedrose;
 
 public class DegradableItemFactory {
     public static DegradableItem create(Item item) {
-        if (isAgedBrie(item)) {
+        if(item.name.indexOf("conjured") != -1) {
+            return new Conjured(
+              createDegradableItem(
+                  "any regular item", item
+              )
+            );
+        }
+
+        if (isAgedBrie(item.name)) {
             return new AgedBrie(item);
-        } else if (isSulfuras(item)) {
+        } else if (isSulfuras(item.name)) {
             return new Sulfuras(item);
-        } else if(areBackstagePasses(item)) {
+        } else if(areBackstagePasses(item.name)) {
             return new BackstagePasses(item);
         }
         return new RegularItem(item);
     }
 
-    private static boolean areBackstagePasses(Item item) {
-        return item.name.equals("Backstage passes");
+    private static DegradableItem createDegradableItem(String name, Item item) {
+        if (isAgedBrie(name)) {
+            return new AgedBrie(item);
+        } else if (isSulfuras(name)) {
+            return new Sulfuras(item);
+        } else if(areBackstagePasses(name)) {
+            return new BackstagePasses(item);
+        }
+        return new RegularItem(item);
     }
 
-    private static boolean isSulfuras(Item item) {
-        return item.name.equals("Sulfuras");
+    private static boolean areBackstagePasses(String name) {
+        return name.equals("Backstage passes");
     }
 
-    private static boolean isAgedBrie(Item item) {
-        return item.name.equals("Aged Brie");
+    private static boolean isSulfuras(String name) {
+        return name.equals("Sulfuras");
+    }
+
+    private static boolean isAgedBrie(String name) {
+        return name.equals("Aged Brie");
     }
 }

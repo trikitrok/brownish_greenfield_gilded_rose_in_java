@@ -142,4 +142,26 @@ public class GildedRoseTest {
 
         assertThat(backstagePasses.quality, is(0));
     }
+
+    @Test
+    public void a_conjured_regular_item_days_to_be_sold_decreases_by_one() {
+        int initialDaysToBeSold = 10;
+        Item item = new Item("a conjured regular item", initialDaysToBeSold, 7);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.sellIn, is(initialDaysToBeSold - 1));
+    }
+
+    @Test
+    public void a_conjured_regular_item_quality_decreases_by_two() {
+        int initialQuality =  5;
+        Item item = new Item("any conjured regular item", 6, initialQuality);
+        GildedRose gildedRose = GildedRose.witCatalogHaving(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(initialQuality - 2));
+    }
 }
