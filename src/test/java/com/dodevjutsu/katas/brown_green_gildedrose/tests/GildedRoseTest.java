@@ -51,4 +51,15 @@ public class GildedRoseTest {
 
         assertThat(item.quality, is(initialQuality));
     }
+
+    @Test
+    public void aged_brie_increases_in_quality_the_older_it_gets() {
+        int initialQuality = 10;
+        Item item = new Item("Aged Brie", 5, initialQuality);
+        GildedRose gildedRose = new GildedRose(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(initialQuality + 1));
+    }
 }

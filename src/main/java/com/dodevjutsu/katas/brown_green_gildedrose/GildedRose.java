@@ -14,6 +14,11 @@ public class GildedRose {
     }
 
     private void updateItemQuality() {
+        if(item.name.equals("Aged Brie")) {
+            item.quality += 1;
+            return;
+        }
+
         if(item.sellIn < 0) {
             decreaseQualityBy(2);
             return;
