@@ -40,4 +40,15 @@ public class GildedRoseTest {
 
         assertThat(item.quality, is(initialQuality - 2));
     }
+
+    @Test
+    public void the_quality_of_an_item_is_never_negative() {
+        int initialQuality = 0;
+        Item item = new Item("a regular item", 1, initialQuality);
+        GildedRose gildedRose = new GildedRose(item);
+
+        gildedRose.updateInventory();
+
+        assertThat(item.quality, is(initialQuality));
+    }
 }
